@@ -41,9 +41,7 @@ There are some incoherencies in the movement of the sand that I was not able to 
 
 ![](/media/layers.png)
 
-And here is a video of the final animation:
-
-![](/media/project_video.mp4)
+And you can download the video of the final animation [here](/media/project_video.mp4).
 
 The report for the project is available [here](/media/final_report.pdf).
 
