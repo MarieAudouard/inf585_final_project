@@ -10,9 +10,13 @@ using cgp::mesh_drawable;
 
 
 struct gui_parameters {
-	bool display_color = true;
-	bool display_particles = true;
-	bool display_radius = false;
+	bool display_color = false;
+	bool display_particles = false;
+	bool display_walls = true;
+	bool display_grid = false;
+	bool rho_correction = true;
+	bool display_reconstructed_surface = true;
+	float angle_coords = 0.375f;
 };
 
 // The structure of the custom scene
@@ -37,15 +41,14 @@ struct scene_structure : cgp::scene_inputs_generic {
 	// ****************************** //
 	cgp::timer_basic timer;
 
-	sph_parameters_structure sph_parameters; // Physical parameter related to SPH
 	pic_parameters_structure pic_parameters; // Physical parameter related to PIC
 	grid_structure grid;
 	cgp::numarray<particle_element> particles;      // Storage of the particles
 	cgp::mesh_drawable sphere_particle; // Sphere used to display a particle
-	cgp::curve_drawable curve_visual;   // Circle used to display the radius h of influence
 
-	cgp::grid_2D<cgp::vec3> field;      // grid used to represent the volume of the fluid under the particles
-	cgp::mesh_drawable field_quad; // quad used to display this field color
+	cgp::mesh_drawable field_quad; // quad for the ground
+	cgp::mesh_drawable wall_quad; // quad for the walls
+	cgp::mesh_drawable grid_mesh; // mesh for the grid
 
 
 	// ****************************** //
@@ -56,7 +59,6 @@ struct scene_structure : cgp::scene_inputs_generic {
 	void display_frame(); // The frame display to be called within the animation loop
 	void display_gui();   // The display of the GUI, also called within the animation loop
 
-	void initialize_sph();
 	void initialize_pic();
 
 	void mouse_move_event();
